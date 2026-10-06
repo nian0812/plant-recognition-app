@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>PvZ Sunflower Bouncy Animation</title>
+  <style>
+    body {
+      background: #111A15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      color: #E8F0EB;
+    }
+
+    h2 { margin-bottom: 8px; font-size: 20px; letter-spacing: 0.5px; }
+    p { margin-bottom: 30px; font-size: 13px; color: #82958B; }
+
+    /* Khung sân khấu cho Hoa */
+    .stage {
+      width: 220px;
+      height: 240px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    /* Đổ bóng đáy phản ứng theo nhịp nhảy */
+    .shadow {
+      position: absolute;
+      bottom: 6px;
+      width: 80px;
+      height: 14px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 50%;
+      animation: shadowPulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes shadowPulse {
+      0%, 50%, 100% { transform: scale(1); opacity: 0.4; }
+      25%, 75%       { transform: scale(1.15, 0.85); opacity: 0.6; }
+    }
+
+    /* NHÓM CẢ CÂY HOA: Điệu nhún nảy tổng thể (Squash & Stretch + Translation) */
+    .pvz-flower {
+      width: 140px;
+      height: 180px;
+      transform-origin: bottom center;
+      animation: pvzBounce 1.4s ease-in-out infinite;
+      position: relative;
+    }
+
+    @keyframes pvzBounce {
+      0% {
+        transform: translateY(0) scale(1, 1) rotate(0deg);
+      }
+      15% {
+        /* Vươn lên cao nhất (Stretch) */
+        transform: translateY(-10px) scale(0.94, 1.08) rotate(0deg);
+      }
+      30% {
+        /* Đáp xuống và nghiêng sang Trái (Squash) */
+        transform: translateY(2px) scale(1.08, 0.92) rotate(-12deg);
+      }
+      45% {
+        /* Nảy nhẹ trở lại */
+        transform: translateY(-4px) scale(0.98, 1.02) rotate(-6deg);
+      }
+      60% {
+        /* Lên đỉnh giữa lần 2 */
+        transform: translateY(-10px) scale(0.94, 1.08) rotate(0deg);
+      }
+      75% {
+        /* Đáp xuống và nghiêng sang Phải (Squash) */
+        transform: translateY(2px) scale(1.08, 0.92) rotate(12deg);
+      }
+      90% {
+        /* Nảy nhẹ trở lại */
+        transform: translateY(-4px) scale(0.98, 1.02) rotate(6deg);
+      }
+      100% {
+        transform: translateY(0) scale(1, 1) rotate(0deg);
+      }
+    }
+
+    /* ĐẦU HOA XOAY NHỊP NHÀNG (Độ trễ kế tiếp - Overlapping) */
+    .head-wrapper {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      width: 120px;
+      height: 120px;
+      transform-origin: 60px 85px; /* Khớp cổ */
+      animation: headSway 1.4s ease-in-out infinite;
+    }
+
+    @keyframes headSway {
+      0%, 100% { transform: rotate(0deg); }
+      30%      { transform: rotate(-8deg); }
+      75%      { transform: rotate(8deg); }
+    }
+
+    /* HAI CHIẾC LÁ VỖ VẪY NHƯ HAI TAY NHẢY */
+    .leaf-l {
+      position: absolute;
+      bottom: 25px;
+      left: 12px;
+      transform-origin: 35px 25px;
+      animation: leafLeftWave 1.4s ease-in-out infinite;
+    }
+    .leaf-r {
+      position: absolute;
+      bottom: 25px;
+      right: 12px;
+      transform-origin: 5px 25px;
+      animation: leafRightWave 1.4s ease-in-out infinite;
+    }
+
+    @keyframes leafLeftWave {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25%      { transform: rotate(-18deg) scale(1.1); }
+      75%      { transform: rotate(10deg) scale(0.95); }
+    }
+    @keyframes leafRightWave {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      25%      { transform: rotate(-10deg) scale(0.95); }
+      75%      { transform: rotate(18deg) scale(1.1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>PHONG CÁCH HOẠT HỌA PLANTS VS. ZOMBIES</h2>
+  <p>Nhún nhảy theo nhịp (Squash & Stretch + Bouncy Rhythm)</p>
+
+  <div class="stage">
+    <div class="shadow"></div>
+
+    <div class="pvz-flower">
+      <!-- Thân cây cong xanh mướt -->
+      <svg style="position: absolute; bottom: 0; left: 0; width: 140px; height: 90px;">
+        <path d="M70,90 Q66,50 70,25" stroke="#2D6A4F" stroke-width="8" stroke-linecap="round" fill="none"/>
+      </svg>
+
+      <!-- Lá trái -->
+      <div class="leaf-l">
+        <svg width="40" height="30">
+          <ellipse cx="20" cy="15" rx="18" ry="9" fill="#40916C" transform="rotate(-20 20 15)"/>
+        </svg>
+      </div>
+
+      <!-- Lá phải -->
+      <div class="leaf-r">
+        <svg width="40" height="30">
+          <ellipse cx="20" cy="15" rx="18" ry="9" fill="#52B788" transform="rotate(20 20 15)"/>
+        </svg>
+      </div>
+
+      <!-- Đầu Bông Hoa Hướng Dương -->
+      <div class="head-wrapper">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <!-- Cánh hoa bung xòe vàng rực -->
+          <g fill="#FBBF24" stroke="#F59E0B" stroke-width="1">
+            <circle cx="60" cy="22" r="13" />
+            <circle cx="60" cy="98" r="13" />
+            <circle cx="22" cy="60" r="13" />
+            <circle cx="98" cy="60" r="13" />
+            <circle cx="33" cy="33" r="13" />
+            <circle cx="87" cy="87" r="13" />
+            <circle cx="87" cy="33" r="13" />
+            <circle cx="33" cy="87" r="13" />
+            <!-- Lớp cánh đệm chéo -->
+            <circle cx="42" cy="24" r="11" fill="#FCD34D"/>
+            <circle cx="78" cy="24" r="11" fill="#FCD34D"/>
+            <circle cx="96" cy="42" r="11" fill="#FCD34D"/>
+            <circle cx="96" cy="78" r="11" fill="#FCD34D"/>
+            <circle cx="78" cy="96" r="11" fill="#FCD34D"/>
+            <circle cx="42" cy="96" r="11" fill="#FCD34D"/>
+            <circle cx="24" cy="78" r="11" fill="#FCD34D"/>
+            <circle cx="24" cy="42" r="11" fill="#FCD34D"/>
+          </g>
+
+          <!-- Khuôn mặt nhụy hoa tròn trịa ấm áp -->
+          <circle cx="60" cy="60" r="32" fill="#78350F" stroke="#B45309" stroke-width="2"/>
+
+          <!-- Mắt hoạt hình chớp dễ thương đặc trưng PvZ -->
+          <ellipse cx="48" cy="56" rx="4" ry="7" fill="#FFFFFF"/>
+          <ellipse cx="49" cy="56" rx="2.5" ry="5" fill="#111A15"/>
+          <circle cx="50" cy="54" r="1.2" fill="#FFFFFF"/>
+
+          <ellipse cx="72" cy="56" rx="4" ry="7" fill="#FFFFFF"/>
+          <ellipse cx="73" cy="56" rx="2.5" ry="5" fill="#111A15"/>
+          <circle cx="74" cy="54" r="1.2" fill="#FFFFFF"/>
+
+          <!-- Má hồng và nụ cười rạng rỡ -->
+          <circle cx="42" cy="67" r="4" fill="#F87171" opacity="0.6"/>
+          <circle cx="78" cy="67" r="4" fill="#F87171" opacity="0.6"/>
+          <path d="M52,66 Q60,74 68,66" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

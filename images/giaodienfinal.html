@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Plant Recognition Platform v2.2 - Giao Diện Bàn Giao Hoàn Chỉnh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1B4332;
+      --primary-container: #E8F0EB;
+      --secondary: #2D6A4F;
+      --accent: #52B788;
+      --bg: #F8FAF8;
+      --surface: #FFFFFF;
+      --text-main: #111A15;
+      --text-muted: #4D6156;
+      --border: #E2E8E4;
+      --amber: #D97706;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0D1410;
+      font-family: 'Inter', sans-serif;
+      color: #E2E8E4;
+      padding: 40px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 13px;
+      color: #82958B;
+      margin-top: 6px;
+    }
+
+    .studio-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 36px;
+      justify-content: center;
+      max-width: 1750px;
+    }
+
+    .device-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .device-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #A3B8AD;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    /* Vỏ iPhone 11 Pro Max Chuẩn */
+    .iphone-box {
+      width: 375px;
+      height: 812px;
+      background: var(--bg);
+      border-radius: 46px;
+      border: 9px solid #1F2823;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-main);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 26px;
+      background: #1F2823;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      z-index: 100;
+    }
+
+    .status-bar {
+      height: 42px;
+      padding: 12px 22px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      z-index: 90;
+    }
+
+    .screen-body {
+      flex: 1;
+      padding: 12px 18px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 4px;
+      background: rgba(17, 26, 21, 0.4);
+      border-radius: 2px;
+      z-index: 100;
+    }
+
+    .btn-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #FFF;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+
+    /* Hero Banner Ở Trang Chủ */
+    .hero-banner {
+      background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%);
+      border-radius: 20px;
+      padding: 18px 16px;
+      color: #FFF;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      min-height: 165px;
+    }
+    .hero-banner h2 { font-size: 16px; font-weight: 700; line-height: 1.3; }
+    .hero-banner p { font-size: 11px; opacity: 0.85; margin-top: 6px; }
+
+    .hero-sunflower-container {
+      position: absolute;
+      right: 4px;
+      bottom: 0px;
+      width: 135px;
+      height: 155px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      pointer-events: none;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .bento-card {
+      background: #FFF;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 12px;
+      position: relative;
+    }
+    .bento-card.active { border: 2px solid var(--secondary); }
+    .bento-card.disabled { background: #FAFBF9; opacity: 0.85; }
+    
+    .badge-status {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .badge-ready { background: var(--primary-container); color: var(--secondary); }
+    .badge-soon { background: #FEF3C7; color: var(--amber); }
+
+    .btn-cta-main {
+      background: var(--primary);
+      color: #FFF;
+      height: 50px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      width: 100%;
+      box-shadow: 0 6px 14px rgba(27,67,50,0.22);
+      margin-top: auto;
+    }
+
+    /* KHUNG ẢNH MẪU VẬT THỰC TẾ CỦA USER TẢI LÊN */
+    .user-captured-image-box {
+      width: 100%;
+      height: 195px;
+      border-radius: 18px;
+      position: relative;
+      margin-bottom: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(17, 26, 21, 0.08);
+      background: #232B26;
+    }
+
+    .user-captured-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .user-captured-image-box:hover img {
+      transform: scale(1.03);
+    }
+
+    .btn-zoom-overlay {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(17, 26, 21, 0.65);
+      backdrop-filter: blur(4px);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>BÀN GIAO THIẾT KẾ NỀN TẢNG NHẬN DẠNG THỰC VẬT v2.2</h1>
+    <p>Màn Hình Kết Quả Đã Cập Nhật Ảnh Thật Do Người Dùng Tải Lên (User-Captured Specimen Photo)</p>
+  </header>
+
+  <div class="studio-grid">
+
+    <!-- 01. TRANG CHỦ NỀN TẢNG -->
+    <div class="device-column">
+      <div class="device-label">01. Trang Chủ Nền Tảng (Hub)</div>
+      <div class="iphone-box">
+        <div class="notch"></div>
+        <div class="status-bar"><span>9:41</span><span>● 100%</span></div>
+        <div class="screen-body">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <h2 style="font-size:18px;">Nhận dạng thực vật</h2>
+            <div style="display:flex; gap:6px;">
+              <div class="btn-circle">📚</div>
+              <div class="btn-circle">⚙</div>
+            </div>
+          </div>
+
+          <!-- Hero Banner với Hoa Hướng Dương PvZ -->
+          <div class="hero-banner">
+            <span style="font-size:9px; font-weight:700; background:rgba(82,183,136,0.3); padding:3px 6px; border-radius:6px; display:inline-block; margin-bottom:8px;">NỀN TẢNG AI ĐA DANH MỤC</span>
+            <h2>Nhận dạng thế giới<br>thực vật &amp; sinh vật</h2>
+            <p>Cấu hình: Hoa • V4 EfficientNetV2-S</p>
+
+            <div class="hero-sunflower-container">
+              <svg viewBox="0 0 240 280" width="130" height="150">
+                <style>
+                  .pvz-root-mini { transform-origin: 120px 260px; animation: pvzDance 1.4s ease-in-out infinite; }
+                  .pvz-head-mini { transform-origin: 120px 145px; animation: headSway 1.4s ease-in-out infinite; }
+                  .pvz-eye-mini  { transform-origin: 120px 105px; animation: eyeBlink 3.4s infinite; }
+                  @keyframes pvzDance {
+                    0%, 100% { transform: translateY(0) scale(1,1) rotate(0deg); }
+                    18% { transform: translateY(-10px) scale(0.94,1.08) rotate(0deg); }
+                    36% { transform: translateY(2px) scale(1.08,0.92) rotate(-8deg); }
+                    72% { transform: translateY(-10px) scale(0.94,1.08) rotate(0deg); }
+                    88% { transform: translateY(2px) scale(1.08,0.92) rotate(8deg); }
+                  }
+                  @keyframes headSway {
+                    0%, 100% { transform: rotate(0deg); }
+                    36% { transform: rotate(-6deg); }
+                    88% { transform: rotate(6deg); }
+                  }
+                  @keyframes eyeBlink {
+                    0%, 93%, 100% { transform: scaleY(1); }
+                    95%, 97% { transform: scaleY(0.08); }
+                  }
+                </style>
+                <ellipse cx="120" cy="265" rx="55" ry="12" fill="#000" opacity="0.25"/>
+                <g class="pvz-root-mini">
+                  <path d="M 85 245 C 60 230, 40 245, 55 260 C 70 268, 100 260, 95 250 Z" fill="#2D6A4F" stroke="#111A15" stroke-width="3"/>
+                  <path d="M 155 245 C 180 230, 200 245, 185 260 C 170 268, 140 260, 145 250 Z" fill="#2D6A4F" stroke="#111A15" stroke-width="3"/>
+                  <path d="M 90 260 C 75 235, 105 225, 120 235 C 135 225, 165 235, 150 260 C 138 272, 102 272, 90 260 Z" fill="#40916C" stroke="#111A15" stroke-width="3"/>
+                  <path d="M 120 250 Q 115 190, 120 145" stroke="#40916C" stroke-width="14" stroke-linecap="round" fill="none"/>
+                  <path d="M 120 250 Q 115 190, 120 145" stroke="#111A15" stroke-width="3" stroke-linecap="round" fill="none"/>
+                  <path d="M 115 195 C 75 180, 70 150, 95 155 C 115 160, 118 185, 115 195 Z" fill="#52B788" stroke="#111A15" stroke-width="3"/>
+                  <path d="M 125 185 C 165 170, 170 140, 145 145 C 125 150, 122 175, 125 185 Z" fill="#52B788" stroke="#111A15" stroke-width="3"/>
+
+                  <g class="pvz-head-mini">
+                    <g stroke="#261204" stroke-width="3" fill="#FACC15">
+                      <circle cx="120" cy="50" r="14"/><circle cx="145" cy="55" r="14"/><circle cx="165" cy="75" r="14"/>
+                      <circle cx="175" cy="100" r="14"/><circle cx="165" cy="125" r="14"/><circle cx="145" cy="145" r="14"/>
+                      <circle cx="120" cy="155" r="14"/><circle cx="95" cy="145" r="14"/><circle cx="75" cy="125" r="14"/>
+                      <circle cx="65" cy="100" r="14"/><circle cx="75" cy="75" r="14"/><circle cx="95" cy="55" r="14"/>
+                    </g>
+                    <path d="M 72 105 C 72 70, 92 56, 120 56 C 148 56, 168 70, 168 105 C 168 138, 146 152, 120 152 C 94 152, 72 138, 72 105 Z" fill="#D97706" stroke="#261204" stroke-width="3.5"/>
+                    <path d="M 88 116 Q 120 134, 152 116" stroke="#1A0D00" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+                    <g class="pvz-eye-mini">
+                      <ellipse cx="102" cy="94" rx="6" ry="12" fill="#111A15"/>
+                      <ellipse cx="103.5" cy="88" rx="2.5" ry="4.5" fill="#FFFFFF"/>
+                      <ellipse cx="138" cy="94" rx="6" ry="12" fill="#111A15"/>
+                      <ellipse cx="139.5" cy="88" rx="2.5" ry="4.5" fill="#FFFFFF"/>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Bạn muốn nhận dạng gì?</div>
+
+          <div class="bento-grid">
+            <div class="bento-card active">
+              <span class="badge-status badge-ready">SẴN SÀNG</span>
+              <div style="font-size:22px; margin-bottom:6px;">🌸</div>
+              <strong style="font-size:14px; display:block;">Hoa</strong>
+              <span style="font-size:11px; color:var(--text-muted);">20 - 50 loài</span>
+            </div>
+
+            <div class="bento-card disabled">
+              <span class="badge-status badge-soon">SẮP CÓ</span>
+              <div style="font-size:22px; margin-bottom:6px;">🌳</div>
+              <strong style="font-size:14px; display:block; color:#6B7280;">Cây thân gỗ</strong>
+              <span style="font-size:11px; color:#9CA3AF;">Cây bóng mát, rừng</span>
+            </div>
+
+            <div class="bento-card disabled">
+              <span class="badge-status badge-soon">SẮP CÓ</span>
+              <div style="font-size:22px; margin-bottom:6px;">🍎</div>
+              <strong style="font-size:14px; display:block; color:#6B7280;">Cây ăn quả</strong>
+              <span style="font-size:11px; color:#9CA3AF;">Xoài, cam, bưởi</span>
+            </div>
+
+            <div class="bento-card disabled">
+              <span class="badge-status badge-soon">SẮP CÓ</span>
+              <div style="font-size:22px; margin-bottom:6px;">🍄</div>
+              <strong style="font-size:14px; display:block; color:#6B7280;">Nấm tự nhiên</strong>
+              <span style="font-size:11px; color:#9CA3AF;">Giới Nấm (Fungi)</span>
+            </div>
+          </div>
+
+          <div style="background:#FFF; border:1px solid var(--border); border-radius:12px; padding:10px 12px; display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+            <div style="width:8px; height:8px; border-radius:50%; background:var(--accent);"></div>
+            <div style="flex:1;">
+              <span style="font-size:10px; color:var(--text-muted); display:block;">Mô hình cục bộ:</span>
+              <strong style="font-size:12px;">Flower V4 (Core ML Trên máy)</strong>
+            </div>
+            <span style="font-size:11px; font-weight:600; color:var(--secondary);">Đổi &gt;</span>
+          </div>
+
+          <button class="btn-cta-main">📷  Nhận dạng ngay</button>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <!-- 02. CHỌN PHƯƠNG THỨC -->
+    <div class="device-column">
+      <div class="device-label">02. Phương Thức Nhận Dạng</div>
+      <div class="iphone-box">
+        <div class="notch"></div>
+        <div class="status-bar"><span>9:41</span><span>● 100%</span></div>
+        <div class="screen-body">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <div class="btn-circle">←</div>
+            <h2 style="font-size:16px;">Phương thức • Nhóm Hoa</h2>
+            <div style="width:34px;"></div>
+          </div>
+
+          <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">Chọn cách thức AI xử lý hình ảnh:</p>
+
+          <div style="background:#FFF; border:2px solid var(--secondary); border-radius:14px; padding:14px; margin-bottom:10px; display:flex; gap:12px;">
+            <div style="font-size:24px;">📷</div>
+            <div>
+              <strong style="font-size:14px; display:block;">Ảnh đơn (Single Image)</strong>
+              <span style="font-size:11px; color:var(--text-muted); display:block; margin:2px 0 4px;">Chụp hoặc chọn 1 ảnh từ thư viện máy.</span>
+              <span style="font-size:10px; font-weight:700; color:var(--secondary);">Hỗ trợ: V2 (50 loài), V4 (20 loài)</span>
+            </div>
+          </div>
+
+          <div style="background:#FFF; border:1px solid var(--border); border-radius:14px; padding:14px; margin-bottom:10px; display:flex; gap:12px;">
+            <div style="font-size:24px;">👁</div>
+            <div>
+              <strong style="font-size:14px; display:block;">Nhận dạng trực tiếp (Live)</strong>
+              <span style="font-size:11px; color:var(--text-muted); display:block; margin:2px 0 4px;">Quét liên tục qua camera không cần chụp.</span>
+              <span style="font-size:10px; font-weight:700; color:var(--secondary);">On-Device Throttled ● 30 FPS</span>
+            </div>
+          </div>
+
+          <div style="background:#FAFBF9; border:1px dashed var(--border); border-radius:14px; padding:14px; margin-bottom:10px; display:flex; gap:12px; opacity:0.85;">
+            <div style="font-size:24px; opacity:0.5;">⬡</div>
+            <div>
+              <strong style="font-size:14px; display:block; color:#6B7280;">Quét đối tượng (Detection)</strong>
+              <span style="font-size:11px; color:#9CA3AF; display:block; margin:2px 0 4px;">Tìm và vẽ khung vị trí các hoa trong ảnh.</span>
+              <span style="font-size:9px; font-weight:700; background:#FEF3C7; color:var(--amber); padding:2px 6px; border-radius:4px;">ĐANG HUẤN LUYỆN MODEL</span>
+            </div>
+          </div>
+
+          <div style="background:#FAFBF9; border:1px dashed var(--border); border-radius:14px; padding:14px; margin-bottom:auto; display:flex; gap:12px; opacity:0.85;">
+            <div style="font-size:24px; opacity:0.5;">◉</div>
+            <div>
+              <strong style="font-size:14px; display:block; color:#6B7280;">Phân vùng (Segmentation)</strong>
+              <span style="font-size:11px; color:#9CA3AF; display:block; margin:2px 0 4px;">Tách chính xác từng viền cánh hoa và lá.</span>
+              <span style="font-size:9px; font-weight:700; background:#FEF3C7; color:var(--amber); padding:2px 6px; border-radius:4px;">GIAI ĐOẠN NGHIÊN CỨU 4</span>
+            </div>
+          </div>
+
+          <div style="background:var(--primary-container); border-radius:12px; padding:12px; font-size:11px; color:var(--primary); line-height:1.4;">
+            <strong>Trung thực học thuật:</strong> Không dùng model Phân loại để vẽ Bounding Box giả lập cho Quét đối tượng.
+          </div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <!-- 03. CAMERA TRỰC TIẾP ON-DEVICE -->
+    <div class="device-column">
+      <div class="device-label">03. Ống Kính Quét Mẫu (Live)</div>
+      <div class="iphone-box" style="background:#111A15; color:#FFF;">
+        <div class="notch"></div>
+        <div class="status-bar" style="color:#FFF;"><span>9:41</span><span>● ⚡</span></div>
+        <div class="screen-body" style="padding:10px 14px 20px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="btn-circle" style="background:rgba(255,255,255,0.2); border:none; color:#FFF;">←</div>
+            <span style="font-size:11px; background:rgba(0,0,0,0.6); padding:4px 10px; border-radius:12px;">🌸 Hoa › Trực tiếp › V4</span>
+            <div class="btn-circle" style="background:rgba(255,255,255,0.2); border:none; color:#FFF;">⚡</div>
+          </div>
+
+          <div style="margin:12px auto; background:rgba(27,67,50,0.8); padding:3px 10px; border-radius:10px; font-size:10px; font-weight:600; color:#52B788;">
+            ● Core ML On-Device: 42ms
+          </div>
+
+          <!-- Khung ngắm Camera -->
+          <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <div style="width:230px; height:230px; border:2px dashed rgba(82,183,136,0.8); border-radius:24px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+              <!-- Ảnh xem trước camera thật -->
+              <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=600&q=80" 
+                   alt="Live Camera Sunflower" 
+                   style="width:100%; height:100%; object-fit:cover; opacity:0.85;">
+            </div>
+          </div>
+
+          <!-- HUD Real-time Prediction Overlay -->
+          <div style="background:rgba(17,26,21,0.9); border:1.5px solid var(--accent); border-radius:16px; padding:12px 14px; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div>
+              <strong style="font-size:15px; display:block;">Hoa Hướng Dương</strong>
+              <span style="font-size:11px; color:#A3B8AD; font-style:italic;">Helianthus annuus</span>
+            </div>
+            <div style="width:42px; height:42px; border-radius:50%; border:3px solid var(--accent); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700;">
+              94%
+            </div>
+          </div>
+
+          <!-- Shutter Bar -->
+          <div style="display:flex; justify-content:space-around; align-items:center;">
+            <div class="btn-circle" style="background:rgba(255,255,255,0.2); border:none; color:#FFF;">🖼</div>
+            <div style="width:64px; height:64px; border-radius:50%; border:4px solid rgba(255,255,255,0.4); background:#FFF;"></div>
+            <div class="btn-circle" style="background:rgba(255,255,255,0.2); border:none; color:#FFF;">⟲</div>
+          </div>
+        </div>
+        <div class="home-indicator" style="background:rgba(255,255,255,0.5);"></div>
+      </div>
+    </div>
+
+    <!-- 04. KẾT QUẢ NHẬN DẠNG: ĐÃ ĐỔI THÀNH ẢNH USER CHỤP THỰC TẾ -->
+    <div class="device-column">
+      <div class="device-label">04. Kết Quả Nhận Dạng (Result)</div>
+      <div class="iphone-box">
+        <div class="notch"></div>
+        <div class="status-bar"><span>9:41</span><span>● 100%</span></div>
+        <div class="screen-body">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+            <div class="btn-circle">✕</div>
+            <h2 style="font-size:16px;">Kết quả phân tích</h2>
+            <div class="btn-circle">↗</div>
+          </div>
+
+          <!-- KHUNG HIỂN THỊ ẢNH THỰC TẾ DO NGƯỜI DÙNG CHỤP/TẢI LÊN -->
+          <div class="user-captured-image-box">
+            <!-- Ảnh chụp mẫu vật thực tế thật 100% ngoài đời -->
+            <img src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=800&q=80" 
+                 alt="Bức ảnh thực tế người dùng chụp" />
+            
+            <!-- Nút Phóng to ảnh (Lightbox Zoom) -->
+            <div class="btn-zoom-overlay" title="Chạm để xem ảnh gốc full màn hình">🔍</div>
+
+            <!-- Huy hiệu nhúng trên ảnh -->
+            <div style="position:absolute; bottom:10px; left:10px; display:flex; gap:6px;">
+              <span style="background:rgba(17,26,21,0.85); backdrop-filter:blur(4px); color:#FFF; font-size:10px; font-weight:600; padding:4px 8px; border-radius:6px; border:1px solid rgba(255,255,255,0.15);">Nhóm: 🌸 Hoa</span>
+              <span style="background:rgba(27,67,50,0.9); backdrop-filter:blur(4px); color:var(--accent); font-size:10px; font-weight:600; padding:4px 8px; border-radius:6px; border:1px solid rgba(82,183,136,0.3);">● On-Device Core ML</span>
+            </div>
+          </div>
+
+          <!-- Thẻ kết quả phân tích -->
+          <div style="background:#FFF; border:1px solid var(--border); border-radius:16px; padding:14px; margin-bottom:12px;">
+            <h3 style="font-size:20px; font-weight:700;">Hoa Hướng Dương</h3>
+            <p style="font-size:12px; font-style:italic; color:var(--text-muted); margin-bottom:6px;">Helianthus annuus</p>
+            <span style="font-size:10px; font-weight:600; background:var(--primary-container); color:var(--secondary); padding:3px 8px; border-radius:6px;">Họ Cúc (Asteraceae)</span>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:10px; border-top:1px solid var(--border);">
+              <div>
+                <span style="font-size:11px; color:var(--text-muted); display:block;">Độ tin cậy</span>
+                <strong style="font-size:22px; color:var(--text-main);">94.21%</strong>
+              </div>
+              <div style="width:46px; height:46px; border-radius:50%; border:4px solid var(--secondary); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700;">
+                94%
+              </div>
+            </div>
+          </div>
+
+          <button style="background:var(--primary-container); color:var(--primary); height:46px; border-radius:12px; border:none; font-size:13px; font-weight:600; width:100%; margin-bottom:8px;">
+            📖  Xem hồ sơ sinh học &gt;
+          </button>
+          <button class="btn-cta-main">📷  Nhận dạng mẫu khác</button>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

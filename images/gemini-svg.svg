@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 896" width="414" height="896">
+  <defs>
+    <!-- Bộ đổ bóng chuẩn Design System -->
+    <filter id="card-shadow" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1B4332" flood-opacity="0.06"/>
+    </filter>
+    <filter id="btn-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1B4332" flood-opacity="0.2"/>
+    </filter>
+    <linearGradient id="hero-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B4332"/>
+      <stop offset="100%" stop-color="#2D6A4F"/>
+    </linearGradient>
+  </defs>
+
+  <style>
+    .font-title { font-family: 'Inter', -apple-system, sans-serif; font-weight: 700; fill: #111A15; }
+    .font-sub { font-family: 'Inter', -apple-system, sans-serif; font-weight: 400; fill: #4D6156; }
+    .font-btn { font-family: 'Inter', -apple-system, sans-serif; font-weight: 600; fill: #FFFFFF; }
+  </style>
+
+  <!-- Nền toàn màn hình -->
+  <rect width="414" height="896" fill="#F8FAF8"/>
+
+  <!-- Status Bar (iOS) -->
+  <text x="36" y="38" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" fill="#111A15">9:41</text>
+  <circle cx="350" cy="34" r="3" fill="#111A15"/>
+  <path d="M365 30 h18 a2 2 0 0 1 2 2 v6 a2 2 0 0 1 -2 2 h-18 a2 2 0 0 1 -2 -2 v-6 a2 2 0 0 1 2 -2 z" fill="none" stroke="#111A15" stroke-width="1.5"/>
+  <rect x="367" y="32" width="12" height="6" rx="1" fill="#111A15"/>
+
+  <!-- Top App Bar -->
+  <text x="24" y="85" class="font-title" font-size="22">Plant Recognition</text>
+  <!-- History Icon Button -->
+  <circle cx="330" cy="80" r="18" fill="#FFFFFF" filter="url(#card-shadow)"/>
+  <path d="M330 73 v7 l4 3" fill="none" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="330" cy="80" r="8" fill="none" stroke="#2D6A4F" stroke-width="1.5"/>
+  <!-- Settings Icon Button -->
+  <circle cx="374" cy="80" r="18" fill="#FFFFFF" filter="url(#card-shadow)"/>
+  <circle cx="374" cy="80" r="4" fill="none" stroke="#2D6A4F" stroke-width="2"/>
+  <path d="M374 71 v2 M374 87 v2 M365 80 h2 M381 80 h2" stroke="#2D6A4F" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Hero Card -->
+  <rect x="20" y="118" width="374" height="230" rx="24" fill="url(#hero-grad)" filter="url(#card-shadow)"/>
+  <!-- Họa tiết thực vật trang trí chìm -->
+  <path d="M310 118 Q394 180 394 280 Q320 348 240 310 Q280 200 310 118 Z" fill="#52B788" opacity="0.15"/>
+  <path d="M260 140 Q350 210 320 320" fill="none" stroke="#52B788" stroke-width="1.5" opacity="0.25"/>
+
+  <rect x="40" y="142" width="82" height="24" rx="12" fill="#52B788" opacity="0.3"/>
+  <text x="50" y="158" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#E8F0EB">TRÍ TUỆ NHÂN TẠO</text>
+  
+  <text x="40" y="200" font-family="'Inter', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">Khám phá thế giới</text>
+  <text x="40" y="228" font-family="'Inter', sans-serif" font-size="22" font-weight="700" fill="#FFFFFF">thực vật quanh bạn</text>
+  <text x="40" y="262" font-family="'Inter', sans-serif" font-size="13" font-weight="400" fill="#E8F0EB" opacity="0.9">Chụp hoặc tải ảnh để hệ thống phân tích</text>
+  <text x="40" y="282" font-family="'Inter', sans-serif" font-size="13" font-weight="400" fill="#E8F0EB" opacity="0.9">và nhận dạng chính xác loài cây.</text>
+
+  <!-- Model Information Card -->
+  <rect x="20" y="366" width="374" height="88" rx="16" fill="#FFFFFF" stroke="#E2E8E4" stroke-width="1" filter="url(#card-shadow)"/>
+  <rect x="36" y="386" width="48" height="48" rx="12" fill="#E8F0EB"/>
+  <!-- Neural Chip Icon -->
+  <rect x="50" y="400" width="20" height="20" rx="4" fill="none" stroke="#1B4332" stroke-width="2"/>
+  <circle cx="60" cy="410" r="3" fill="#1B4332"/>
+  <line x1="60" y1="394" x2="60" y2="400" stroke="#1B4332" stroke-width="2"/>
+  <line x1="60" y1="420" x2="60" y2="426" stroke="#1B4332" stroke-width="2"/>
+  
+  <text x="96" y="404" class="font-sub" font-size="12">Mô hình nhận dạng đang dùng</text>
+  <text x="96" y="426" class="font-title" font-size="15">EfficientNetV2-S <tspan font-weight="400" fill="#4D6156">• 20 loài</tspan></text>
+  <text x="340" y="416" font-family="'Inter', sans-serif" font-size="13" font-weight="600" fill="#2D6A4F">Đổi &gt;</text>
+
+  <!-- Tips Box -->
+  <rect x="20" y="472" width="374" height="130" rx="16" fill="#FFFFFF" stroke="#E2E8E4" stroke-width="1"/>
+  <text x="40" y="504" class="font-title" font-size="15">Mẹo nhận diện chính xác</text>
+  <circle cx="46" cy="530" r="3" fill="#2D6A4F"/>
+  <text x="58" y="534" class="font-sub" font-size="13">Đặt hoa hoặc lá cây ở vị trí trung tâm</text>
+  <circle cx="46" cy="556" r="3" fill="#2D6A4F"/>
+  <text x="58" y="560" class="font-sub" font-size="13">Đảm bảo đủ ánh sáng tự nhiên, không bị lóa</text>
+  <circle cx="46" cy="582" r="3" fill="#2D6A4F"/>
+  <text x="58" y="586" class="font-sub" font-size="13">Tránh chụp ảnh bị rung tay hoặc mờ nét</text>
+
+  <!-- Sticky Main CTA -->
+  <rect x="20" y="760" width="374" height="56" rx="14" fill="#1B4332" filter="url(#btn-shadow)"/>
+  <!-- Camera Icon -->
+  <path d="M148 786 h6 l3 -4 h14 l3 4 h6 a3 3 0 0 1 3 3 v15 a3 3 0 0 1 -3 3 h-29 a3 3 0 0 1 -3 -3 v-15 a3 3 0 0 1 3 -3 z" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <circle cx="164" cy="796" r="4.5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="186" y="795" class="font-btn" font-size="16">Nhận dạng ngay</text>
+
+  <!-- iOS Home Bar Indicator -->
+  <rect x="138" y="880" width="138" height="5" rx="2.5" fill="#111A15" opacity="0.3"/>
+</svg>

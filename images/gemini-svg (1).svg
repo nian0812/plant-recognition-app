@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 414 896" width="414" height="896">
+  <defs>
+    <filter id="card-shadow-res" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#1B4332" flood-opacity="0.08"/>
+    </filter>
+    <filter id="btn-primary-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1B4332" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- Nền xám thảo mộc -->
+  <rect width="414" height="896" fill="#F8FAF8"/>
+
+  <!-- Status Bar -->
+  <text x="36" y="38" font-family="-apple-system, sans-serif" font-size="14" font-weight="600" fill="#111A15">9:41</text>
+  <rect x="367" y="32" width="12" height="6" rx="1" fill="#111A15"/>
+
+  <!-- Top Navigation Bar -->
+  <circle cx="42" cy="80" r="18" fill="#FFFFFF" stroke="#E2E8E4" stroke-width="1"/>
+  <path d="M37 75 L47 85 M47 75 L37 85" stroke="#111A15" stroke-width="2" stroke-linecap="round"/>
+  <text x="140" y="85" font-family="'Inter', sans-serif" font-size="17" font-weight="600" fill="#111A15">Kết quả nhận dạng</text>
+  <circle cx="372" cy="80" r="18" fill="#FFFFFF" stroke="#E2E8E4" stroke-width="1"/>
+  <path d="M368 76 L376 76 L376 84 M376 76 L367 85" stroke="#111A15" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- Khung Ảnh Mẫu Vật Thực Tế -->
+  <rect x="20" y="116" width="374" height="230" rx="20" fill="#DDE5DE"/>
+  <!-- Minh họa mẫu vật: Cánh hoa hướng dương -->
+  <circle cx="207" cy="215" r="50" fill="#FBBF24"/>
+  <circle cx="207" cy="215" r="32" fill="#78350F"/>
+  <!-- Model Badge ghim trên ảnh -->
+  <rect x="34" y="300" width="168" height="30" rx="8" fill="rgba(17, 26, 21, 0.75)"/>
+  <text x="46" y="320" font-family="'Inter', sans-serif" font-size="12" font-weight="500" fill="#FFFFFF">Model: EfficientNetV2-S</text>
+
+  <!-- Result Main Specimen Card -->
+  <rect x="20" y="362" width="374" height="258" rx="20" fill="#FFFFFF" stroke="#E2E8E4" stroke-width="1" filter="url(#card-shadow-res)"/>
+  
+  <!-- Tên thuần Việt & Tên khoa học -->
+  <text x="40" y="404" font-family="'Inter', sans-serif" font-size="24" font-weight="700" fill="#111A15">Hoa Hướng Dương</text>
+  <text x="40" y="428" font-family="'Inter', sans-serif" font-size="14" font-weight="500" font-style="italic" fill="#4D6156">Helianthus annuus</text>
+  
+  <!-- Tag Phân Loại Họ -->
+  <rect x="40" y="442" width="144" height="26" rx="6" fill="#E8F0EB"/>
+  <text x="50" y="459" font-family="'Inter', sans-serif" font-size="12" font-weight="600" fill="#2D6A4F">Họ Cúc (Asteraceae)</text>
+
+  <!-- Đường gạch phân cách -->
+  <line x1="40" y1="486" x2="374" y2="486" stroke="#E2E8E4" stroke-width="1"/>
+
+  <!-- Khối Hiển Thị Độ Tin Cậy (Confidence Block) -->
+  <text x="40" y="520" font-family="'Inter', sans-serif" font-size="13" font-weight="500" fill="#4D6156">Độ tin cậy</text>
+  <text x="40" y="552" font-family="'Inter', sans-serif" font-size="28" font-weight="700" fill="#111A15">86.71%</text>
+  
+  <rect x="40" y="568" width="104" height="24" rx="12" fill="#E8F0EB"/>
+  <circle cx="52" cy="580" r="4" fill="#2D6A4F"/>
+  <text x="62" y="584" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#2D6A4F">Đáng tin cậy</text>
+
+  <!-- Vòng tròn đo tiến trình (Radial Confidence Ring: 86.71%) -->
+  <!-- Bán kính R=32, Chu vi C ≈ 201px. 86.71% tương đương stroke-dasharray = 174, 201 -->
+  <circle cx="330" cy="542" r="32" fill="none" stroke="#E2E8E4" stroke-width="6"/>
+  <circle cx="330" cy="542" r="32" fill="none" stroke="#2D6A4F" stroke-width="6"
+          stroke-dasharray="174 201" stroke-linecap="round" transform="rotate(-90 330 542)"/>
+  <text x="330" y="547" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#111A15" text-anchor="middle">87%</text>
+
+  <!-- Secondary CTA: Xem Chi Tiết Thực Vật -->
+  <rect x="20" y="636" width="374" height="52" rx="12" fill="#E8F0EB"/>
+  <text x="146" y="668" font-family="'Inter', sans-serif" font-size="15" font-weight="600" fill="#1B4332">Xem thông tin loài &gt;</text>
+
+  <!-- Primary CTA: Nhận Dạng Ảnh Khác -->
+  <rect x="20" y="700" width="374" height="54" rx="12" fill="#1B4332" filter="url(#btn-primary-shadow)"/>
+  <text x="134" y="733" font-family="'Inter', sans-serif" font-size="16" font-weight="600" fill="#FFFFFF">📷  Nhận dạng ảnh khác</text>
+
+  <!-- Home Indicator -->
+  <rect x="138" y="880" width="138" height="5" rx="2.5" fill="#111A15" opacity="0.3"/>
+</svg>

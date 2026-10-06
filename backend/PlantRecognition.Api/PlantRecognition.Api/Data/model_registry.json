@@ -1,0 +1,30 @@
+﻿{
+  "models": [
+    {
+      "id": "v2",
+      "name": "Flower Recognition V2",
+      "displayName": "V2 – Flower 50",
+      "architecture": "EfficientNet-B0",
+      "version": "2.0",
+      "imageSize": 224,
+      "resizeSize": 256,
+      "classCount": 50,
+      "onnxPath": "Models/AI/v2/efficientnet_b0_v2.onnx",
+      "mappingPath": "Models/AI/v2/class_mapping_v2.json",
+      "status": "ready"
+    },
+    {
+      "id": "v4",
+      "name": "Flower Recognition V4",
+      "displayName": "V4 – Flower 20",
+      "architecture": "EfficientNetV2-S",
+      "version": "4.0",
+      "imageSize": 384,
+      "resizeSize": 438,
+      "classCount": 20,
+      "onnxPath": "Models/AI/v4/efficientnet_v2_s_v4.onnx",
+      "mappingPath": "Models/AI/v4/class_mapping_v4.json",
+      "status": "ready"
+    }
+  ]
+}

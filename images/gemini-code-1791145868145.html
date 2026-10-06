@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Plant Recognition - Bàn Giao Thiết Kế UI/UX Prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1B4332;
+      --primary-container: #E8F0EB;
+      --secondary: #2D6A4F;
+      --accent: #52B788;
+      --background: #F8FAF8;
+      --surface: #FFFFFF;
+      --text-primary: #111A15;
+      --text-secondary: #4D6156;
+      --border: #E2E8E4;
+      --warning: #D97706;
+      --error: #C53030;
+      --radius-l: 16px;
+      --radius-xl: 24px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0E1612;
+      font-family: 'Inter', sans-serif;
+      color: #E2E8E4;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+    }
+    header p {
+      font-size: 14px;
+      color: #82958B;
+      margin-top: 8px;
+    }
+
+    /* Khung hiển thị các thiết bị */
+    .mockup-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      max-width: 1800px;
+    }
+
+    .device-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .device-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #A3B8AD;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Vỏ khung iPhone 11 Pro Max */
+    .iphone-shell {
+      width: 375px;
+      height: 812px;
+      background: var(--background);
+      border-radius: 48px;
+      border: 10px solid #232B26;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 0 4px rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      color: var(--text-primary);
+    }
+
+    /* Notch tai thỏ */
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      height: 28px;
+      background: #232B26;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      z-index: 100;
+    }
+
+    /* Thanh trạng thái Status Bar */
+    .status-bar {
+      height: 44px;
+      padding: 12px 24px 0 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 90;
+    }
+
+    /* Vạch gạt đáy Home Indicator */
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 4px;
+      background: rgba(17, 26, 21, 0.4);
+      border-radius: 2px;
+      z-index: 100;
+    }
+
+    .screen-content {
+      flex: 1;
+      padding: 12px 18px 20px 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* Các thành phần UI bên trong */
+    .app-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .app-bar h2 { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      border-radius: var(--radius-xl);
+      padding: 24px 20px;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 16px rgba(27, 67, 50, 0.15);
+    }
+    .hero-tag {
+      font-size: 10px;
+      font-weight: 700;
+      background: rgba(82, 183, 136, 0.3);
+      padding: 4px 8px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--primary-container);
+    }
+    .hero-card h3 { font-size: 18px; font-weight: 700; line-height: 1.3; }
+    .hero-card p { font-size: 12px; opacity: 0.85; margin-top: 8px; line-height: 1.4; }
+
+    .model-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-l);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .model-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-container);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .model-info { flex: 1; }
+    .model-info span { font-size: 11px; color: var(--text-secondary); display: block; }
+    .model-info strong { font-size: 14px; color: var(--text-primary); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 6px 14px rgba(27, 67, 50, 0.2);
+    }
+
+    .btn-secondary {
+      background: var(--primary-container);
+      color: var(--primary);
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    /* Màn hình Camera */
+    .camera-screen {
+      background: #000000;
+      color: #FFFFFF;
+    }
+    .camera-viewport {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .reticle {
+      width: 240px;
+      height: 240px;
+      border: 2px dashed rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .shutter-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.4);
+      background: #FFFFFF;
+      margin: 0 auto;
+    }
+
+    /* Màn hình Đang Phân Tích (Processing) */
+    .processing-overlay {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .radar-pulse {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: var(--primary-container);
+      border: 3px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin-bottom: 24px;
+      animation: pulse 1.8s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    /* Thẻ Kết Quả */
+    .result-image-box {
+      width: 100%;
+      height: 190px;
+      border-radius: 16px;
+      background: #E0E7E2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-bottom: 16px;
+      font-size: 54px;
+    }
+    .badge-model {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(17, 26, 21, 0.8);
+      color: #FFFFFF;
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .result-card {
+      background: var(--surface);
+      border-radius: var(--radius-l);
+      border: 1px solid var(--border);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .confidence-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .ring-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 4px solid var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>HỆ THỐNG MẪU GIAO DIỆN DI ĐỘNG (MOBILE UI PROTOTYPE)</h1>
+    <p>Đồ án Tốt nghiệp: Ứng dụng Di động Nhận dạng Thực vật tích hợp Học sâu • Thiết bị: iPhone 11 Pro Max</p>
+  </header>
+
+  <div class="mockup-grid">
+
+    <!-- MÀN HÌNH 01: TRANG CHỦ -->
+    <div class="device-wrapper">
+      <div class="device-title">01. Trang Chủ (Home)</div>
+      <div class="iphone-shell">
+        <div class="notch"></div>
+        <div class="status-bar"><span>9:41</span><span>● WiFi 100%</span></div>
+        <div class="screen-content">
+          <div class="app-bar">
+            <h2>Plant Recognition</h2>
+            <div style="display:flex; gap:8px;">
+              <div class="icon-btn">🕒</div>
+              <div class="icon-btn">⚙</div>
+            </div>
+          </div>
+          
+          <div class="hero-card">
+            <span class="hero-tag">TRÍ TUỆ NHÂN TẠO</span>
+            <h3>Khám phá thế giới<br>thực vật quanh bạn</h3>
+            <p>Chụp hoặc tải ảnh để hệ thống AI phân tích và nhận dạng loài hoa tức thì.</p>
+          </div>
+
+          <div class="model-card">
+            <div class="model-icon">❖</div>
+            <div class="model-info">
+              <span>Mô hình đang hoạt động</span>
+              <strong>EfficientNetV2-S (20 loài)</strong>
+            </div>
+            <span style="font-size:12px; font-weight:600; color:var(--secondary);">Đổi &gt;</span>
+          </div>
+
+          <div style="background:#FFF; padding:14px; border-radius:14px; border:1px solid var(--border); margin-bottom:auto;">
+            <strong style="font-size:13px; display:block; margin-bottom:6px;">Mẹo chụp ảnh:</strong>
+            <p style="font-size:12px; color:var(--text-secondary); line-height:1.4;">• Căn đối tượng nằm giữa tâm khung hình.<br>• Giữ khoảng cách gần và đủ ánh sáng.</p>
+          </div>
+
+          <button class="btn-primary">📷  Nhận dạng ngay</button>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <!-- MÀN HÌNH 02: CAMERA SCREEN -->
+    <div class="device-wrapper">
+      <div class="device-title">02. Ống Kính Quét Mẫu (Camera)</div>
+      <div class="iphone-shell camera-screen">
+        <div class="notch"></div>
+        <div class="status-bar" style="color:#FFF;"><span>9:41</span><span>● ⚡</span></div>
+        <div class="screen-content" style="padding:10px 16px 24px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="icon-btn" style="background:rgba(255,255,255,0.2); border:none; color:#FFF;">←</div>
+            <span style="font-size:14px; color:rgba(255,255,255,0.8);">Hướng máy vào hoa/lá</span>
+            <div class="icon-btn" style="background:rgba(255,255,255,0.2); border:none; color:#FFF;">⚡</div>
+          </div>
+
+          <div class="camera-viewport">
+            <div class="reticle">
+              <span style="font-size:48px; opacity:0.8;">🌻</span>
+            </div>
+            <span style="font-size:12px; margin-top:14px; color:rgba(255,255,255,0.7);">Đặt mẫu vật vào giữa khung nét</span>
+          </div>
+
+          <div style="display:flex; align-items:center; justify-content:space-around; margin-top:auto;">
+            <div class="icon-btn" style="background:rgba(255,255,255,0.2); border:none; color:#FFF; font-size:18px;">🖼</div>
+            <div class="shutter-btn"></div>
+            <div class="icon-btn" style="background:rgba(255,255,255,0.2); border:none; color:#FFF; font-size:18px;">⟲</div>
+          </div>
+        </div>
+        <div class="home-indicator" style="background:rgba(255,255,255,0.5);"></div>
+      </div>
+    </div>
+
+    <!-- MÀN HÌNH 03: ĐANG PHÂN TÍCH (PROCESSING) -->
+    <div class="device-wrapper">
+      <div class="device-title">03. Xử Lý Phân Tích (Processing)</div>
+      <div class="iphone-shell">
+        <div class="notch"></div>
+        <div class="status-bar"><span>9:41</span><span>100%</span></div>
+        <div class="screen-content">
+          <div class="processing-overlay">
+            <div class="radar-pulse">🌱</div>
+            <h3 style="font-size:20px; font-weight:700; margin-bottom:8px;">Đang phân tích hình ảnh...</h3>
+            <p style="font-size:13px; color:var(--text-secondary); max-width:240px; line-height:1.5;">
+              Mô hình Deep Learning đang trích xuất các đặc trưng hình thái sinh học.
+            </p>
+          </div>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+    <!-- MÀN HÌNH 04: KẾT QUẢ NHẬN DẠNG (RESULT) -->
+    <div class="device-wrapper">
+      <div class="device-title">04. Kết Quả Nhận Dạng (Result)</div>
+      <div class="iphone-shell">
+        <div class="notch"></div>
+        <div class="status-bar"><span>9:41</span><span>100%</span></div>
+        <div class="screen-content">
+          <div class="app-bar" style="margin-bottom:12px;">
+            <div class="icon-btn">✕</div>
+            <h2 style="font-size:17px;">Kết quả phân tích</h2>
+            <div class="icon-btn">↗</div>
+          </div>
+
+          <div class="result-image-box">
+            🌻
+            <div class="badge-model">Mô hình: EfficientNetV2-S</div>
+          </div>
+
+          <div class="result-card">
+            <h3 style="font-size:22px; font-weight:700;">Hoa Hướng Dương</h3>
+            <p style="font-size:13px; font-style:italic; color:var(--text-secondary); margin-bottom:8px;">Helianthus annuus</p>
+            <span style="font-size:11px; font-weight:600; background:var(--primary-container); color:var(--secondary); padding:3px 8px; border-radius:6px;">Họ Cúc (Asteraceae)</span>
+            
+            <div class="confidence-row">
+              <div>
+                <span style="font-size:11px; color:var(--text-secondary); display:block;">Độ tin cậy</span>
+                <strong style="font-size:22px;">86.71%</strong>
+              </div>
+              <div class="ring-wrapper">87%</div>
+            </div>
+          </div>
+
+          <button class="btn-secondary">Xem thông tin loài &gt;</button>
+          <button class="btn-primary" style="margin-top:auto;">📷  Nhận dạng ảnh khác</button>
+        </div>
+        <div class="home-indicator"></div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

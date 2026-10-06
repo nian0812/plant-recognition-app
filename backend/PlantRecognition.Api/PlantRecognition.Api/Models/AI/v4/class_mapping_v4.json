@@ -1,0 +1,60 @@
+{
+  "num_classes": 20,
+  "class_to_idx": {
+    "Anemone_coronaria": 0,
+    "Antirrhinum_majus": 1,
+    "Bellis_perennis": 2,
+    "Celosia_argentea": 3,
+    "Chrysanthemum_zawadzkii": 4,
+    "Crocus_vernus": 5,
+    "Dahlia_coccinea": 6,
+    "Dianthus_chinensis": 7,
+    "Echinacea_purpurea": 8,
+    "Fuchsia_magellanica": 9,
+    "Gardenia_jasminoides": 10,
+    "Helianthus_annuus": 11,
+    "Hibiscus_syriacus": 12,
+    "Hydrangea_macrophylla": 13,
+    "Impatiens_walleriana": 14,
+    "Ipomoea_purpurea": 15,
+    "Iris_sibirica": 16,
+    "Ixora_coccinea": 17,
+    "Lavandula_stoechas": 18,
+    "Nelumbo_nucifera": 19
+  },
+  "idx_to_class": {
+    "0": "Anemone_coronaria",
+    "1": "Antirrhinum_majus",
+    "2": "Bellis_perennis",
+    "3": "Celosia_argentea",
+    "4": "Chrysanthemum_zawadzkii",
+    "5": "Crocus_vernus",
+    "6": "Dahlia_coccinea",
+    "7": "Dianthus_chinensis",
+    "8": "Echinacea_purpurea",
+    "9": "Fuchsia_magellanica",
+    "10": "Gardenia_jasminoides",
+    "11": "Helianthus_annuus",
+    "12": "Hibiscus_syriacus",
+    "13": "Hydrangea_macrophylla",
+    "14": "Impatiens_walleriana",
+    "15": "Ipomoea_purpurea",
+    "16": "Iris_sibirica",
+    "17": "Ixora_coccinea",
+    "18": "Lavandula_stoechas",
+    "19": "Nelumbo_nucifera"
+  },
+  "image_size": 384,
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  }
+}

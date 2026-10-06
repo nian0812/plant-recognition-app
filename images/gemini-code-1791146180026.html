@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Plant Recognition - Motion & Transitions Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1B4332;
+      --primary-container: #E8F0EB;
+      --secondary: #2D6A4F;
+      --accent: #52B788;
+      --bg: #F4F7F4;
+      --surface: #FFFFFF;
+      --text: #111A15;
+      --muted: #4D6156;
+      --border: #E2E8E4;
+      --amber: #D97706;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0B110E;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px;
+      color: #FFF;
+    }
+
+    .demo-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .demo-header h1 { font-size: 24px; color: #FFF; margin-bottom: 6px; }
+    .demo-header p { font-size: 13px; color: #82958B; }
+
+    /* iPhone Frame */
+    .phone {
+      width: 380px;
+      height: 780px;
+      background: var(--bg);
+      border-radius: 44px;
+      border: 10px solid #1E2621;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      color: var(--text);
+    }
+
+    .notch {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 160px;
+      height: 26px;
+      background: #1E2621;
+      border-bottom-left-radius: 16px;
+      border-bottom-right-radius: 16px;
+      z-index: 100;
+    }
+
+    .status-bar {
+      height: 40px;
+      padding: 12px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 600;
+      z-index: 90;
+    }
+
+    .content {
+      flex: 1;
+      padding: 12px 18px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Botanical Animated Showcase Card */
+    .showcase-card {
+      background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%);
+      border-radius: 24px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 24px rgba(27, 67, 50, 0.2);
+    }
+
+    .showcase-text {
+      width: 55%;
+      z-index: 2;
+    }
+    .badge-chip {
+      background: rgba(82, 183, 136, 0.25);
+      color: #D8F3DC;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .showcase-text h2 {
+      font-size: 18px;
+      line-height: 1.25;
+      color: #FFF;
+      font-weight: 700;
+    }
+
+    /* SVG Botanical Stage */
+    .botanical-stage {
+      position: absolute;
+      right: 10px;
+      bottom: -10px;
+      width: 160px;
+      height: 200px;
+      z-index: 1;
+    }
+
+    /* Keyframes: Hoa Hướng Dương Lắc Lư Tự Nhiên */
+    @keyframes sunflowerSway {
+      0%   { transform: rotate(0deg) scale(1); }
+      25%  { transform: rotate(5.5deg) scale(1.02); }
+      50%  { transform: rotate(-1deg) scale(0.99); }
+      75%  { transform: rotate(-6deg) scale(1.01); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    /* Keyframes: Lá Cây Gió Thổi (Lệch Pha) */
+    @keyframes leafFlutter {
+      0%   { transform: rotate(0deg) skewX(0deg); }
+      35%  { transform: rotate(-7deg) skewX(-2deg); }
+      70%  { transform: rotate(5deg) skewX(2deg); }
+      100% { transform: rotate(0deg) skewX(0deg); }
+    }
+
+    /* Keyframes: Cuống cây cong cơ học */
+    @keyframes stemBend {
+      0%   { transform: rotate(0deg); }
+      50%  { transform: rotate(2.5deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .flower-head {
+      transform-origin: 80px 105px; /* Tâm xoay cuống hoa */
+      animation: sunflowerSway 3.2s ease-in-out infinite;
+    }
+    .leaf-left {
+      transform-origin: 75px 145px;
+      animation: leafFlutter 2.6s ease-in-out infinite;
+    }
+    .leaf-right {
+      transform-origin: 85px 135px;
+      animation: leafFlutter 2.9s ease-in-out infinite 0.4s;
+    }
+    .stem-group {
+      transform-origin: 80px 190px;
+      animation: stemBend 3.2s ease-in-out infinite;
+    }
+
+    /* Grid Chế Độ Nhận Dạng (4 Modes) */
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .modes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .mode-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .mode-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(27, 67, 50, 0.08);
+      border-color: var(--accent);
+    }
+    .mode-card:active {
+      transform: scale(0.96);
+    }
+
+    .mode-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+      background: var(--primary-container);
+      color: var(--primary);
+    }
+
+    .mode-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .mode-card p {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    /* Thẻ Đang Phát Triển (Disabled/Coming Soon) */
+    .mode-card.disabled {
+      background: #F9FAF9;
+      opacity: 0.85;
+      cursor: not-allowed;
+    }
+    .mode-card.disabled:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+    .status-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: #FEF3C7;
+      color: var(--amber);
+    }
+
+    /* Active Model Selector Card */
+    .model-strip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .model-info-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .model-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(82, 183, 136, 0.25);
+    }
+    .model-strip span { font-size: 11px; color: var(--muted); display: block; }
+    .model-strip strong { font-size: 13px; color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <div class="demo-header">
+    <h1>PLANT RECOGNITION MOTION PROTOTYPE</h1>
+    <p>Kiểm thử hoạt họa sinh học tự nhiên & 4 Chế độ nhận dạng (iPhone 11 Pro Max)</p>
+  </div>
+
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="status-bar">
+      <span>09:41</span>
+      <span>5G ● 100%</span>
+    </div>
+
+    <div class="content">
+      <!-- Showcase Card với Hoa Hướng Dương & Cành Lá Animated -->
+      <div class="showcase-card">
+        <div class="showcase-text">
+          <span class="badge-chip">THỰC VẬT HỌC SỐ</span>
+          <h2>Khám phá thế giới hoa lá quanh bạn</h2>
+        </div>
+
+        <!-- Sân khấu Vector SVG với chuyển động vật lý cơ học -->
+        <svg class="botanical-stage" viewBox="0 0 160 200">
+          <defs>
+            <linearGradient id="stemGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#2D6A4F"/>
+              <stop offset="100%" stop-color="#52B788"/>
+            </linearGradient>
+            <radialGradient id="flowerCenter" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#78350F"/>
+              <stop offset="85%" stop-color="#451A03"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Nhóm Thân Cây (Stem) -->
+          <g class="stem-group">
+            <path d="M80 105 Q78 145 80 190" stroke="url(#stemGrad)" stroke-width="5" stroke-linecap="round" fill="none"/>
+          </g>
+
+          <!-- Lá Trái (Leaf Left - Dao động gió) -->
+          <g class="leaf-left">
+            <path d="M78 145 C50 142 42 120 40 115 C52 118 70 128 78 145 Z" fill="#40916C"/>
+            <path d="M78 145 Q55 125 40 115" stroke="#74C69D" stroke-width="1.2" fill="none"/>
+          </g>
+
+          <!-- Lá Phải (Leaf Right - Dao động gió ngược pha) -->
+          <g class="leaf-right">
+            <path d="M80 135 C108 132 118 112 120 108 C108 110 90 120 80 135 Z" fill="#52B788"/>
+            <path d="M80 135 Q102 118 120 108" stroke="#95D5B2" stroke-width="1.2" fill="none"/>
+          </g>
+
+          <!-- Đầu Bông Hoa Hướng Dương Lắc Lư (Flower Head) -->
+          <g class="flower-head">
+            <!-- 12 Cánh Hoa Vàng Tươi -->
+            <g fill="#FBBF24" stroke="#F59E0B" stroke-width="0.75">
+              <ellipse cx="80" cy="72" rx="6" ry="16"/>
+              <ellipse cx="80" cy="138" rx="6" ry="16"/>
+              <ellipse cx="47" cy="105" rx="16" ry="6"/>
+              <ellipse cx="113" cy="105" rx="16" ry="6"/>
+              <ellipse cx="56" cy="81" rx="8" ry="16" transform="rotate(-45 56 81)"/>
+              <ellipse cx="104" cy="129" rx="8" ry="16" transform="rotate(-45 104 129)"/>
+              <ellipse cx="104" cy="81" rx="8" ry="16" transform="rotate(45 104 81)"/>
+              <ellipse cx="56" cy="129" rx="8" ry="16" transform="rotate(45 56 129)"/>
+            </g>
+            <!-- Nhụy Hoa Nâu Tự Nhiên -->
+            <circle cx="80" cy="105" r="17" fill="url(#flowerCenter)"/>
+            <circle cx="80" cy="105" r="14" fill="none" stroke="#D97706" stroke-dasharray="2 3" stroke-width="1.5"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Phân Mục 4 Chế Độ Nhận Dạng (4 Recognition Modes) -->
+      <div class="section-title">Bạn muốn nhận dạng bằng cách nào?</div>
+      
+      <div class="modes-grid">
+        <!-- MODE 1: ẢNH ĐƠN (MVP Sẵn sàng) -->
+        <div class="mode-card">
+          <div class="mode-icon">📷</div>
+          <h3>Ảnh đơn</h3>
+          <p>Chụp hoặc chọn 1 ảnh tĩnh từ thư viện máy.</p>
+        </div>
+
+        <!-- MODE 2: NHẬN DẠNG TRỰC TIẾP (On-Device Stream) -->
+        <div class="mode-card">
+          <div class="mode-icon" style="background:#D8F3DC; color:#1B4332;">👁</div>
+          <h3>Trực tiếp</h3>
+          <p>Hướng camera vào hoa để nhận dạng liên tục.</p>
+        </div>
+
+        <!-- MODE 3: QUÉT ĐỐI TƯỢNG (Detection - Phase 3) -->
+        <div class="mode-card disabled">
+          <span class="status-badge">Sắp có</span>
+          <div class="mode-icon" style="background:#F1F5F2; color:#82958B;">⬡</div>
+          <h3>Quét đối tượng</h3>
+          <p>Tìm và khoanh vùng vị trí các hoa trong ảnh.</p>
+        </div>
+
+        <!-- MODE 4: PHÂN VÙNG ĐỐI TƯỢNG (Segmentation - Phase 4) -->
+        <div class="mode-card disabled">
+          <span class="status-badge">Sắp có</span>
+          <div class="mode-icon" style="background:#F1F5F2; color:#82958B;">◉</div>
+          <h3>Phân vùng</h3>
+          <p>Tách chính xác từng viền lá và cánh hoa.</p>
+        </div>
+      </div>
+
+      <!-- Khối Hiển Thị Mô Hình AI Phục Vụ (AI Model Switcher) -->
+      <div class="model-strip">
+        <div class="model-info-left">
+          <div class="model-dot"></div>
+          <div>
+            <span>Mô hình nơ-ron hoạt động:</span>
+            <strong>V4 — EfficientNetV2-S (20 loài)</strong>
+          </div>
+        </div>
+        <span style="font-size:12px; font-weight:600; color:var(--secondary); cursor:pointer;">Đổi</span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

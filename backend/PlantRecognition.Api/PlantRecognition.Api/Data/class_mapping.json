@@ -1,0 +1,252 @@
+{
+  "0": {
+    "class_id": "Agapanthus_praecox",
+    "name_vi": "Hoa huệ châu Phi",
+    "scientific_name": "Agapanthus praecox"
+  },
+  "1": {
+    "class_id": "Anemone_coronaria",
+    "name_vi": "Hoa hải quỳ",
+    "scientific_name": "Anemone coronaria"
+  },
+  "2": {
+    "class_id": "Antirrhinum_majus",
+    "name_vi": "Hoa mõm sói",
+    "scientific_name": "Antirrhinum majus"
+  },
+  "3": {
+    "class_id": "Bellis_perennis",
+    "name_vi": "Hoa cúc Anh",
+    "scientific_name": "Bellis perennis"
+  },
+  "4": {
+    "class_id": "Calendula_officinalis",
+    "name_vi": "Hoa calendula",
+    "scientific_name": "Calendula officinalis"
+  },
+  "5": {
+    "class_id": "Canna_indica",
+    "name_vi": "Hoa dong riềng",
+    "scientific_name": "Canna indica"
+  },
+  "6": {
+    "class_id": "Catharanthus_roseus",
+    "name_vi": "Hoa dừa cạn",
+    "scientific_name": "Catharanthus roseus"
+  },
+  "7": {
+    "class_id": "Celosia_argentea",
+    "name_vi": "Hoa mào gà",
+    "scientific_name": "Celosia argentea"
+  },
+  "8": {
+    "class_id": "Chrysanthemum_zawadzkii",
+    "name_vi": "Hoa cúc",
+    "scientific_name": "Chrysanthemum zawadzkii"
+  },
+  "9": {
+    "class_id": "Cosmos_bipinnatus",
+    "name_vi": "Hoa sao nhái",
+    "scientific_name": "Cosmos bipinnatus"
+  },
+  "10": {
+    "class_id": "Crocus_vernus",
+    "name_vi": "Hoa Crocus",
+    "scientific_name": "Crocus vernus"
+  },
+  "11": {
+    "class_id": "Dahlia_coccinea",
+    "name_vi": "Hoa thược dược",
+    "scientific_name": "Dahlia coccinea"
+  },
+  "12": {
+    "class_id": "Dianthus_chinensis",
+    "name_vi": "Hoa cẩm chướng",
+    "scientific_name": "Dianthus chinensis"
+  },
+  "13": {
+    "class_id": "Echinacea_purpurea",
+    "name_vi": "Hoa Echinacea",
+    "scientific_name": "Echinacea purpurea"
+  },
+  "14": {
+    "class_id": "Fuchsia_magellanica",
+    "name_vi": "Hoa Fuchsia",
+    "scientific_name": "Fuchsia magellanica"
+  },
+  "15": {
+    "class_id": "Gardenia_jasminoides",
+    "name_vi": "Hoa dành dành",
+    "scientific_name": "Gardenia jasminoides"
+  },
+  "16": {
+    "class_id": "Gladiolus_italicus",
+    "name_vi": "Hoa lay ơn",
+    "scientific_name": "Gladiolus italicus"
+  },
+  "17": {
+    "class_id": "Helianthus_annuus",
+    "name_vi": "Hoa hướng dương",
+    "scientific_name": "Helianthus annuus"
+  },
+  "18": {
+    "class_id": "Hibiscus_syriacus",
+    "name_vi": "Hoa dâm bụt",
+    "scientific_name": "Hibiscus syriacus"
+  },
+  "19": {
+    "class_id": "Hyacinthus_orientalis",
+    "name_vi": "Hoa dạ lan hương",
+    "scientific_name": "Hyacinthus orientalis"
+  },
+  "20": {
+    "class_id": "Hydrangea_macrophylla",
+    "name_vi": "Hoa cẩm tú cầu",
+    "scientific_name": "Hydrangea macrophylla"
+  },
+  "21": {
+    "class_id": "Impatiens_walleriana",
+    "name_vi": "Hoa ngọc thảo",
+    "scientific_name": "Impatiens walleriana"
+  },
+  "22": {
+    "class_id": "Ipomoea_purpurea",
+    "name_vi": "Hoa bìm bìm",
+    "scientific_name": "Ipomoea purpurea"
+  },
+  "23": {
+    "class_id": "Iris_sibirica",
+    "name_vi": "Hoa diên vĩ",
+    "scientific_name": "Iris sibirica"
+  },
+  "24": {
+    "class_id": "Ixora_coccinea",
+    "name_vi": "Hoa trang",
+    "scientific_name": "Ixora coccinea"
+  },
+  "25": {
+    "class_id": "Lantana_camara",
+    "name_vi": "Hoa ngũ sắc",
+    "scientific_name": "Lantana camara"
+  },
+  "26": {
+    "class_id": "Lavandula_stoechas",
+    "name_vi": "Hoa oải hương",
+    "scientific_name": "Lavandula stoechas"
+  },
+  "27": {
+    "class_id": "Leucanthemum_vulgare",
+    "name_vi": "Hoa cúc trắng",
+    "scientific_name": "Leucanthemum vulgare"
+  },
+  "28": {
+    "class_id": "Lilium_lancifolium",
+    "name_vi": "Hoa lily hổ",
+    "scientific_name": "Lilium lancifolium"
+  },
+  "29": {
+    "class_id": "Magnolia_grandiflora",
+    "name_vi": "Hoa mộc lan",
+    "scientific_name": "Magnolia grandiflora"
+  },
+  "30": {
+    "class_id": "Narcissus_pseudonarcissus",
+    "name_vi": "Hoa thủy tiên",
+    "scientific_name": "Narcissus pseudonarcissus"
+  },
+  "31": {
+    "class_id": "Nelumbo_nucifera",
+    "name_vi": "Hoa sen",
+    "scientific_name": "Nelumbo nucifera"
+  },
+  "32": {
+    "class_id": "Nerium_oleander",
+    "name_vi": "Hoa trúc đào",
+    "scientific_name": "Nerium oleander"
+  },
+  "33": {
+    "class_id": "Paeonia_anomala",
+    "name_vi": "Hoa mẫu đơn",
+    "scientific_name": "Paeonia anomala"
+  },
+  "34": {
+    "class_id": "Papaver_rhoeas",
+    "name_vi": "Hoa anh túc",
+    "scientific_name": "Papaver rhoeas"
+  },
+  "35": {
+    "class_id": "Passiflora_edulis",
+    "name_vi": "Hoa chanh dây",
+    "scientific_name": "Passiflora edulis"
+  },
+  "36": {
+    "class_id": "Plumeria_rubra",
+    "name_vi": "Hoa sứ",
+    "scientific_name": "Plumeria rubra"
+  },
+  "37": {
+    "class_id": "Portulaca_grandiflora",
+    "name_vi": "Hoa mười giờ",
+    "scientific_name": "Portulaca grandiflora"
+  },
+  "38": {
+    "class_id": "Protea_cynaroides",
+    "name_vi": "Hoa Protea",
+    "scientific_name": "Protea cynaroides"
+  },
+  "39": {
+    "class_id": "Rhododendron_maximum",
+    "name_vi": "Hoa đỗ quyên",
+    "scientific_name": "Rhododendron maximum"
+  },
+  "40": {
+    "class_id": "Rosa_rugosa",
+    "name_vi": "Hoa hồng",
+    "scientific_name": "Rosa rugosa"
+  },
+  "41": {
+    "class_id": "Rudbeckia_hirta",
+    "name_vi": "Hoa Rudbeckia",
+    "scientific_name": "Rudbeckia hirta"
+  },
+  "42": {
+    "class_id": "Salvia_coccinea",
+    "name_vi": "Hoa xác pháo",
+    "scientific_name": "Salvia coccinea"
+  },
+  "43": {
+    "class_id": "Strelitzia_nicolai",
+    "name_vi": "Hoa thiên điểu",
+    "scientific_name": "Strelitzia nicolai"
+  },
+  "44": {
+    "class_id": "Syringa_vulgaris",
+    "name_vi": "Hoa tử đinh hương",
+    "scientific_name": "Syringa vulgaris"
+  },
+  "45": {
+    "class_id": "Tagetes_minuta",
+    "name_vi": "Hoa vạn thọ",
+    "scientific_name": "Tagetes minuta"
+  },
+  "46": {
+    "class_id": "Tulipa_sylvestris",
+    "name_vi": "Hoa tulip",
+    "scientific_name": "Tulipa sylvestris"
+  },
+  "47": {
+    "class_id": "Wisteria_sinensis",
+    "name_vi": "Hoa tử đằng",
+    "scientific_name": "Wisteria sinensis"
+  },
+  "48": {
+    "class_id": "Zantedeschia_aethiopica",
+    "name_vi": "Hoa rum",
+    "scientific_name": "Zantedeschia aethiopica"
+  },
+  "49": {
+    "class_id": "Zinnia_elegans",
+    "name_vi": "Hoa zinnia",
+    "scientific_name": "Zinnia elegans"
+  }
+}
